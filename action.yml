@@ -24,7 +24,7 @@ inputs:
         required: false
     region:
         description: 'AWS region'
-        required: true
+        required: false
 runs:
     using: 'node12'
     main: 'index.js'

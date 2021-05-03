@@ -27,7 +27,7 @@ Device pool also needs to be specified, this github actions automatically picks 
 **One required** Path/Arn to yml Appium test spec file
 
 ### `region` 
-**Required** AWS region
+**Optional** AWS region
 
 ### How to find ARN ids of already uploaded files
 ```

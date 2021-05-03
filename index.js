@@ -1,7 +1,11 @@
 const core = require('@actions/core');
 
 try {
+    const awsOptions = {}
     const region = core.getInput('region');
+    if(region !== undefined && region !== null) {
+        awsOptions.region = region
+    }
     const runOptions = {
         projectArn: core.getInput('projectArn'),
         apkPath: core.getInput('apkPath'),
@@ -11,9 +15,7 @@ try {
         testArn: core.getInput('testArn'),
         testSpecArn: core.getInput('testSpecArn')
     }
-    require("./action")(runOptions, {
-        region: region
-    }, (err) => {
+    require("./action")(runOptions, awsOptions, (err) => {
         core.setFailed(err.message);
         process.exit(1)
     });
