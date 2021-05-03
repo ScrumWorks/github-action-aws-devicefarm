@@ -128,6 +128,11 @@ const scheduleRun = (devicefarm, options, devicePool, apkUpload, testUpload, tes
             callback(err);
             return;
         }
+        if(options.waitForRunComplete === false) {
+            callback(null, data);
+            return;
+        }
+
         const arnParam = {
             arn: data.run.arn
         }
@@ -298,6 +303,15 @@ const pickDevicePool = (devicefarm, options, callback) => {
  * @param failcb - callback when something fails (err) => {}
  */
 const execute = (options, awsOptions, failcb) => {
+
+    if(options.waitForRunComplete === undefined || options.waitForRunComplete === null) {
+        options.waitForRunComplete = false;
+    } else {
+        if(options.waitForRunComplete !== false) {
+            options.waitForRunComplete = true
+        }
+    }
+
     const devicefarm = new AWS.DeviceFarm(awsOptions);
 
     const afterUpload = (apkUpload, testUpload, testSpecUpload) => {
@@ -320,12 +334,16 @@ const execute = (options, awsOptions, failcb) => {
                     failcb(err);
                     return;
                 }
-                console.log("done", data.run.counters);
-                if(data.run.counters.total !== data.run.counters.passed) {
-                    failcb({
-                        message: "Some tests failed",
-                        data: data
-                    });
+                if(options.waitForRunComplete === true) {
+                    console.log("done", data.run.counters);
+                    if(data.run.counters.total !== data.run.counters.passed) {
+                        failcb({
+                            message: "Some tests failed",
+                            data: data
+                        });
+                    }
+                } else {
+                    console.log("started", data.run);
                 }
                 // And we are DONE. process will exit with code 0
                 process.exit(0);

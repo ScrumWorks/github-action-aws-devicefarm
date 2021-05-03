@@ -25,6 +25,9 @@ inputs:
     region:
         description: 'AWS region'
         required: false
+    waitForRunComplete:
+        description: 'Wait for run to complete'
+        required: false
 runs:
     using: 'node12'
     main: 'index.js'

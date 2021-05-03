@@ -7,6 +7,7 @@ try {
         awsOptions.region = region
     }
     const runOptions = {
+        waitForRunComplete: core.getInput("waitForRunComplete"),
         projectArn: core.getInput('projectArn'),
         apkPath: core.getInput('apkPath'),
         testPath: core.getInput('testPath'),
