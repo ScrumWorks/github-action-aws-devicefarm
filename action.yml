@@ -1,0 +1,30 @@
+name: 'AWS Devicefarm android test'
+description: 'Run android tests'
+inputs:
+    projectArn:
+        description: 'ARN of project where test is run'
+        required: true
+    apkPath:
+        description: 'Path to app .apk file'
+        required: false
+    testPath:
+        description: 'Path to test package .zip file'
+        required: false
+    testSpecPath:
+        description: 'Path to test spec .yml file'
+        required: false
+    apkArn:
+        description: 'ARN of already uploaded .apk file on AWS'
+        required: false
+    testArn:
+        description: 'ARN of already uploaded test package .zip file on AWS'
+        required: false
+    testSpecArn:
+        description: 'ARN of already uploaded test spec .yml file on AWS'
+        required: false
+    region:
+        description: 'AWS region'
+        required: true
+runs:
+    using: 'node12'
+    main: 'index.js'
