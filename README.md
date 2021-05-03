@@ -2,6 +2,8 @@
 
 AWS documentation [task definitions](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DeviceFarm.html)
 
+**Disclaimer**: this github action is expecting APPIUM_NODE test package and specs as an input. For different inputs fork this repo or submit pull request.
+
 ## Inputs
 
 For the test we need to specify apk, test and testSpec files. Files can be specified with path in the repository or ARN string id of already uploaded file.
@@ -16,13 +18,13 @@ Device pool also needs to be specified, this github actions automatically picks 
 **Required** Project ARN id, run from aws cli `aws devicefarm list-projects`
 
 ### `apkPath` or `apkArn`
-**One required** Path/ARN to the app file
+**One required** Path/ARN to the app .apk file
 
 ### `testPath` or `testArn`
-**One required** Path/Arn to the appium test .zip file
+**One required** Path/Arn to the Appium test .zip file 
 
 ### `testSpecPath` or `testSpecArn`
-**One required** Path/Arn to yml test spec file
+**One required** Path/Arn to yml Appium test spec file
 
 ### `region` 
 **Required** AWS region
@@ -39,8 +41,8 @@ with:
     projectArn: "<project arn>"
     
     apkPath: ./build/app.apk
-    testPath: ./test.zip
-    testSpecFile: ./spec.yml
+    testPath: ./appium_test.zip
+    testSpecFile: ./appium_spec.yml
     
     # or use ARN
     apkArn: "<apk arn>",
