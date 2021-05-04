@@ -28,8 +28,7 @@ Device pool also needs to be specified, this github actions automatically picks 
 
 ### `waitForRunComplete`
 **Optional** When task is scheduled wait until COMPLETE state and exit based on the run result
-When `false` exit with success immediately after run is scheduled 
-
+When `false` exit with success immediately after run is scheduled
 
 ### `region` 
 **Optional** AWS region

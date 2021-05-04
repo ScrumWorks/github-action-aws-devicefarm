@@ -7,8 +7,8 @@ const runOptions = {
     projectArn: myArgs[0],
     apkPath: myArgs[1],
     testPath: myArgs[2],
-    testArn:  myArgs[3],
-    testSpecArn:  myArgs[4],
+    testSpecArn:  myArgs[3],
+    waitForRunComplete: false
 }
 
 require("./action")(runOptions, {
